@@ -1,7 +1,7 @@
 const Movie = (props) => {
   return (
-    <div className="movie media">
-      <ul className="movieDescription">
+    <div className="movieInfo">
+      <ul className="movie-details">
         <li className="movie-title">{props}</li>
         <li className="movie-description">{props}</li>
       </ul>
