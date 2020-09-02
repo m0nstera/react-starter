@@ -1,12 +1,10 @@
 const Movie = (props) => {
   return (
     <div className="movie media">
-      <div className="media-body">
-        <div className="movie-title">{props}
-        </div>
-        <div className="movie-description">{props}
-        </div>
-      </div>
+      <ul className="movieDescription">
+        <li className="movie-title">{props}</li>
+        <li className="movie-description">{props}</li>
+      </ul>
     </div>
   );
 };

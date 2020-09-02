@@ -1,5 +1,5 @@
 import React from 'react';
-import movieList from './MovieList.js';
+import MovieList from './MovieList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,8 +12,8 @@ class App extends React.Component {
   }
   render(){
     return(
-    <div>
-      Starter App component - hello there
+    <div id="media">
+      <MovieList movies={this.state.movies} />
     </div>
   )}
 }
