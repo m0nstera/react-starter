@@ -4,7 +4,6 @@ const Movie = (props) => {
 
   return (
     <div className="movieInfo">
-      {console.log(props)}
       <ul className="movie-details">
         <li className="movie-title">{props.movie.title}</li>
         <li className="movie-description">{props.movie.description}

@@ -1,5 +1,6 @@
 import React from 'react';
 import Movie from './Movie.jsx';
+import AddMovie from './AddMovie.jsx';
 
 const MovieList = (props) => {
   return (
@@ -13,6 +14,5 @@ const MovieList = (props) => {
   </div>
   )
 };
-
 
 export default MovieList;
