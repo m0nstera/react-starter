@@ -1,0 +1,17 @@
+.navbar {
+  text-align: center;
+}
+
+.movie-container {
+  margin: auto;
+  width: 50%;
+}
+
+.movieInfo {
+  background-color: white;
+  margin: 0;
+}
+
+.movie-list{
+  border: 1px solid black;
+}

@@ -1,17 +1,26 @@
+import React from 'react';
 import Movie from './Movie.jsx';
+// import Movie from './Movie';
 
-const MovieList = (props) => (
-  <div className="movie-list">
-    {props.movies.map((movie) => {
-      <Movie
-        movie={movie}
-        key={movie.title} />
-    })}
+const MovieList = (props) => {
+  return (
+    <div className="movie-list">
+    {props.movies.map((movie) => (
+    <Movie
+      movie={movie}
+      />
+      )
+    )}
   </div>
-);
-
-MovieList.propTypes = {
-  movies: PropTypes.array.isRequired
+  )
 };
 
+
 export default MovieList;
+// <div className="movie-list">
+//   <div>Mean Girls</div>
+//   <div>Hackers</div>
+//   <div>The Grey</div>
+//   <div>Sunshine</div>
+//   <div>Ex Machina</div>
+// </div>

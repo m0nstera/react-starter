@@ -1,4 +1,6 @@
-var exampleMovies = [
+import React from 'react';
+
+var exampleMovieData = [
   {title: 'Mean Girls', description: 'A tale of High School girls that are mean'},
   {title: 'Hackers', description: '1337 h4xz0rs'},
   {title: 'The Grey', description: 'I am unsure'},
@@ -6,4 +8,4 @@ var exampleMovies = [
   {title: 'Ex Machina', description: 'Robots are smarter than us'},
 ];
 
-export default exampleMovies;
+export default exampleMovieData;
