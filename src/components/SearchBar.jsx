@@ -2,14 +2,25 @@ import React from 'react';
 import MovieList from './MovieList.jsx';
 
 const SearchBar = (props) => {
+
+  // searchHandler(event) {
+  //   this.props.searchHandler(event.target.value);
+  //   this.setState({
+  //     value: event.target.value;
+  //   }
+  //   )
+  // };
+
   return (
   <div id="search-bar">
     <input
     id="search-input" type="text"
     placeholder="movies?!"/>
-    <input className="search-btn" type="submit" value="search"></input>
+    <input className="search-btn" type="submit" value="search"
+    onClick={props.searchHandler}
+    ></input>
   </div>
- )
+ );
 };
 
 export default SearchBar;

@@ -10,22 +10,28 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      movies: exampleMovieData,
-      filteredMovies: ''
+      movies: [],
+      filteredMovies: []
     };
-    // this.searchHandler = this.searchHandler.bind(this)
+    this.searchHandler = this.searchHandler.bind(this)
   }
 
-  // componentDidMount(){}
+  componentDidMount() {
+    this.setState({
+      filteredMovies: []
+    });
+  }
 
-  // searchHandler(searchStr) {
-  //   console.log(searchStr)
-  //   this.setState({}, function() {})
-  // }
+  searchHandler(searchStr) {
+    // console.log(searchStr)
+    var newMovieList = [];
+    var query = document.getElementById('search-inpit');
+    this.setState({
+      filteredMovies: ''
+    }, function() {})
+  }
 
-  //updateName() {
-  //   this.setState({}, function() {})
-  // }
+
 
   render(){
     return(
@@ -33,9 +39,8 @@ class App extends React.Component {
       <h1 className="header">MovieList</h1>
       <div className="search-area">
         <SearchBar
-        // searchHandler={this.searchHandler}
+        searchHandler={this.searchHandler}
         />
-        {/* <SearchButton /> */}
       </div>
       <div className="movie-container">
         <MovieList

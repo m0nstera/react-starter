@@ -1,6 +1,5 @@
 import React from 'react';
 import Movie from './Movie.jsx';
-// import Movie from './Movie';
 
 const MovieList = (props) => {
   return (
@@ -17,10 +16,3 @@ const MovieList = (props) => {
 
 
 export default MovieList;
-// <div className="movie-list">
-//   <div>Mean Girls</div>
-//   <div>Hackers</div>
-//   <div>The Grey</div>
-//   <div>Sunshine</div>
-//   <div>Ex Machina</div>
-// </div>
