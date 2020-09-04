@@ -5,8 +5,12 @@ const WatchedBtn = (props) => {
 
   return (
     <div id="watch-btn">
-      <button>watched</button>
-      <button>to-watched</button>
+      <button
+      onClick={(event)=>{event.preventDefault(); props.watchHandler(true)}}>watched</button>
+
+      <button
+      onClick={(event)=>{event.preventDefault(); props.watchHandler(false)}}
+      >to watch</button>
     </div>
   );
 };

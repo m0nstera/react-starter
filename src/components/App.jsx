@@ -16,12 +16,13 @@ class App extends React.Component {
       searchInput: '',
       addInput: '',
       allMovies: [],
-      //watched: [],
     };
     this.searchHandler = this.searchHandler.bind(this)
     this.searchBtnClick = this.searchBtnClick.bind(this)
     this.addHandler = this.addHandler.bind(this)
     this.addBtnClick = this.addBtnClick.bind(this)
+    this.toggleWatch = this.toggleWatch.bind(this)
+    this.watchHandler = this.watchHandler.bind(this)
   }
 
   componentDidMount() {
@@ -63,9 +64,32 @@ class App extends React.Component {
   }
   // why does the arrow function work?
 
+  //access main moviefnc
+  toggleWatch(title) {
+      var updatedList = this.state.allMovies.map((movie)=>{
+        //is this movie === title passed
+        if (movie.title === title) {
+          return {title: movie.title, watch: !movie.watch};
+        }
+        return movie;
+      });
+      //mapped over the list and changed the bool
+      this.setState({allMovies: updatedList});
+  }
 
-
-
+  // watched handler gets passed a string to filter the list
+  watchHandler(tf) {
+    // if string === watched
+    //  display it
+    // create a var; filtered v of movies
+    if (tf) {
+      var watchedMovies = this.state.allMovies.filter((movie)=> movie.watch);
+      this.setState({allMovies: watchedMovies});
+    } else {
+      var unwatchedMovies = this.state.allMovies.filter((movie)=> !movie.watch);
+      this.setState({allMovies: unwatchedMovies});
+    }
+  }
 
   render(){
     return(
@@ -88,12 +112,13 @@ class App extends React.Component {
       <div className="movie-container">
         <MovieList
         movies={this.state.allMovies}
-        //.filteredMovies
-        //updateName={this.updateName}
+        toggleWatch={this.toggleWatch}
          />
       </div>
       <div className="watch-container">
-        <WatchedBtn />
+        <WatchedBtn
+        watchHandler={this.watchHandler}
+        />
       </div>
     </div>
   )}
