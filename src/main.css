@@ -4,15 +4,17 @@
 }
 
 #add-bar{
-  display:inline-block;
+  display: flex;
   justify-content: center;
   align-items: center;
+  background-color:white;
 }
 
 #search-bar{
-  display: inline-block;
+  display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
 }
 
 .movie-container {

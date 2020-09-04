@@ -11,14 +11,15 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      movies: exampleMovieData,
+      movies: [],
       searchInput: '',
-      filteredMovies: []
+      addInput: '',
+      allMovies: []
     };
     this.searchHandler = this.searchHandler.bind(this)
     this.searchBtnClick = this.searchBtnClick.bind(this)
-    this.addHandler = this.searchHandler.bind(this)
-    this.addBtnClick = this.searchBtnClick.bind(this)
+    this.addHandler = this.addHandler.bind(this)
+    this.addBtnClick = this.addBtnClick.bind(this)
   }
 
   componentDidMount() {
@@ -27,7 +28,7 @@ class App extends React.Component {
 
   resetMovies() {
     this.setState({
-      filteredMovies: this.state.movies,
+      allMovies: this.state.movies,
     });
   }
 
@@ -37,41 +38,27 @@ class App extends React.Component {
     });
   }
 
-
   searchBtnClick() {
     if (this.state.searchInput === '') {
       this.resetMovies();
     } else {
-      var titleCheckerFunc = (movie)=> movie.title.toLowerCase() === this.state.searchInput.toLowerCase();
+      var titleCheckerFunc = (movie)=>movie.title.toLowerCase() === this.state.searchInput.toLowerCase();
       var filteredList = this.state.movies.filter(titleCheckerFunc);
-      this.setState({filteredMovies: filteredList})
+      this.setState({allMovies: filteredList})
     }
   }
 
-  addHandler(input) {
+  addHandler(newMovie) {
     this.setState({
-      movies: exampleMovieData.push(input)
-    });
+      addInput: newMovie});
   }
 
-  addBtnClick(input) {
+  addBtnClick(movie) {
+    var addMov = {title: movie};
     this.setState({
-      movies: exampleMovieData.push(input)
-    });
+      allMovies: [addMov, ...this.state.allMovies]
+    }, ()=> {console.log(this.state)});
   }
-// searchBtnClick() {
-//   if (this.state.searchInput === '') {
-//     this.resetMovies();
-//   } else {
-//     var titleCheckerFunc = (movie)=> {
-//       var movieTitle = movie.title.toLowerCase();
-//       return movieTitle === this.state.searchInput.toLowerCase();}
-//     var filteredList = this.state.movies.filter(titleCheckerFunc);
-//     this.setState({filteredMovies: filteredList})
-//   }
-// }
-
-
 
   render(){
     return(
@@ -86,14 +73,14 @@ class App extends React.Component {
       </div>
       <div className="add-area">
         <AddMovie
-        // searchInput={this.state.searchInput}
-        addHandler={this.searchHandler}
-        addBtnClick={this.searchBtnClick}
+        addInput={this.state.addInput}
+        addHandler={this.addHandler}
+        addBtnClick={this.addBtnClick}
         />
       </div>
       <div className="movie-container">
         <MovieList
-        movies={this.state.filteredMovies}
+        movies={this.state.allMovies}
         //.filteredMovies
         //updateName={this.updateName}
          />
@@ -106,3 +93,21 @@ export default App;
 
 
 
+    // addBtnClick() {
+  //   if (this.state.addInput === '') {
+  //     this.resetMovies();
+  //   } else {
+  //     this.setState({allMovies: exampleMovieData});
+  //   }
+  // }
+// searchBtnClick() {
+//   if (this.state.searchInput === '') {
+//     this.resetMovies();
+//   } else {
+//     var titleCheckerFunc = (movie)=> {
+//       var movieTitle = movie.title.toLowerCase();
+//       return movieTitle === this.state.searchInput.toLowerCase();}
+//     var filteredList = this.state.movies.filter(titleCheckerFunc);
+//     this.setState({filteredMovies: filteredList})
+//   }
+// }
