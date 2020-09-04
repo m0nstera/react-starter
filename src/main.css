@@ -21,8 +21,8 @@ body{
   width: 220px;
   height: 23px;
   font-size: 16px;
-
 }
+
 #add-bar{
   display: flex;
   justify-content: center;
@@ -39,14 +39,22 @@ body{
   font-family: 'Kumbh Sans', sans-serif;
 }
 
+#watch-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1F3A99;
+  font-family: 'Kumbh Sans', sans-serif;
+}
+
 button{
   display: flex;
-  align-items: left;
-  padding-left: 4%;
-  padding-bottom: .5%;
+  justify-content: center;
+  align-items: center;
+  color: #1F3A99;
   font-family: 'Kumbh Sans', sans-serif;
   font-size: 16px;
-  background-color: #4562E6;
+  background-color: #1F3A99;
   color: #FFE57C;
   border-radius: 5px;
   width: 120px;
@@ -79,5 +87,4 @@ li{
   list-style-type: none;
   background-color: #1F3A99;
   color: #FFE5A0;
-
 }

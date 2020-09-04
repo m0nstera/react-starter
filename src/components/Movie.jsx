@@ -10,9 +10,6 @@ const Movie = (props) => {
         {/* <li className="movie-description">{props.movie.description} */}
         {/* </li> */}
       </ul>
-      <div id="watch-btn">
-       <button>Watched</button>
-    </div>
     </div>
   );
 };

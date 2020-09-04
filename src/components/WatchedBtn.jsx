@@ -1,13 +1,17 @@
-// import React from 'react';
-// import Movie from './Movie.jsx';
+import React from 'react';
+import Movie from './Movie.jsx';
 
-// const WatchedBtn = (props) => {
+const WatchedBtn = (props) => {
 
-//   return (
-//     <div id="watch-btn">
-//       <button>Watched</button>
-//     </div>
-//   );
-// };
+  return (
+    <div id="watch-btn">
+      <button>watched</button>
+      <button>to-watched</button>
+    </div>
+  );
+};
 
-// export default WatchedBtn;
+       //onClick={(event) => {event.preventDefault(); props.toggleWatch()}}
+      //  onClick={() => this.updateWatchBtns(true)}
+
+export default WatchedBtn;

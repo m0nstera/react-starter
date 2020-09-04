@@ -15,7 +15,8 @@ class App extends React.Component {
       movies: [],
       searchInput: '',
       addInput: '',
-      allMovies: []
+      allMovies: [],
+      //watched: [],
     };
     this.searchHandler = this.searchHandler.bind(this)
     this.searchBtnClick = this.searchBtnClick.bind(this)
@@ -55,12 +56,16 @@ class App extends React.Component {
   }
 
   addBtnClick(movie) {
-    var addMov = {title: movie};
+    var addMov = {title: movie, watch: false};
     this.setState({
       allMovies: [addMov, ...this.state.allMovies]
     }, ()=>{});
   }
   // why does the arrow function work?
+
+
+
+
 
   render(){
     return(
@@ -86,6 +91,9 @@ class App extends React.Component {
         //.filteredMovies
         //updateName={this.updateName}
          />
+      </div>
+      <div className="watch-container">
+        <WatchedBtn />
       </div>
     </div>
   )}
