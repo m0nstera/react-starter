@@ -1,4 +1,5 @@
 import React from 'react';
+import WatchedBtn from './WatchedBtn.jsx';
 
 const Movie = (props) => {
 
@@ -6,9 +7,12 @@ const Movie = (props) => {
     <div className="movieInfo">
       <ul className="movie-details">
         <li className="movie-title">{props.movie.title}</li>
-        <li className="movie-description">{props.movie.description}
-        </li>
+        {/* <li className="movie-description">{props.movie.description} */}
+        {/* </li> */}
       </ul>
+      <div id="watch-btn">
+       <button>Watched</button>
+    </div>
     </div>
   );
 };

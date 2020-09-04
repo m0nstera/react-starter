@@ -8,7 +8,7 @@ const AddMovie = (props) => {
     <input id="add-input" type="text" placeholder="mo4r movies!" value={props.addInput}
     onChange={(event) => props.addHandler(event.target.value)}
      />
-    <input className="add-btn" type="text" value="add movie"
+    <input className="add-btn" type="button" value="add movie"
     onClick={(event) => {props.addBtnClick(document.getElementById('add-input').value)}}
     />
   </div>

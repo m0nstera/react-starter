@@ -1,6 +1,7 @@
 import React from 'react';
 import Movie from './Movie.jsx';
 import AddMovie from './AddMovie.jsx';
+import WatchedBtn from './WatchedBtn.jsx';
 
 const MovieList = (props) => {
   return (

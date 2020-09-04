@@ -3,6 +3,7 @@ import MovieList from './MovieList.jsx';
 import exampleMovieData from '../data/exampleMovieData.js';
 import SearchBar from './SearchBar.jsx';
 import AddMovie from './AddMovie.jsx';
+import WatchedBtn from './WatchedBtn.jsx';
 import '../main.css';
 import $ from 'jquery';
 
@@ -57,8 +58,9 @@ class App extends React.Component {
     var addMov = {title: movie};
     this.setState({
       allMovies: [addMov, ...this.state.allMovies]
-    }, ()=> {console.log(this.state)});
+    }, ()=>{});
   }
+  // why does the arrow function work?
 
   render(){
     return(
