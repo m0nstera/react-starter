@@ -8,6 +8,7 @@ body{
   color: #FFE57C;
   font-family: 'Kumbh Sans', sans-serif;
 }
+
 .search-btn, .add-btn{
   background-color: #1F3A99;
   color: #FDF2CF;
@@ -16,6 +17,12 @@ body{
   height: 28px;
   font-size: 16px;
 }
+
+.search-btn:active, .add-btn:active{
+  background:#FFE57C;
+  color: #1F3A99;
+}
+
 #add-input, #search-input{
   border-radius: 4px;
   width: 220px;
@@ -39,6 +46,13 @@ body{
   font-family: 'Kumbh Sans', sans-serif;
 }
 
+button:active{
+  background: #FFE57C;
+}
+
+button:focus{
+  background:#1F3A99;
+}
 button{
   display: flex;
   justify-content: center;
@@ -71,6 +85,10 @@ button{
   font-family: 'Kumbh Sans', sans-serif;
 }
 
+button:active{
+  background:#FFE57C;
+  color: #1F3A99;
+}
 
 .movie-container {
   margin: auto;
