@@ -16,6 +16,9 @@ class App extends React.Component {
       searchInput: '',
       addInput: '',
       allMovies: [],
+
+      watched: [],
+      unwatched: []
     };
     this.searchHandler = this.searchHandler.bind(this)
     this.searchBtnClick = this.searchBtnClick.bind(this)
@@ -46,7 +49,7 @@ class App extends React.Component {
       this.resetMovies();
     } else {
       var titleCheckerFunc = (movie)=>movie.title.toLowerCase() === this.state.searchInput.toLowerCase();
-      var filteredList = this.state.movies.filter(titleCheckerFunc);
+      var filteredList = this.state.allMovies.filter(titleCheckerFunc);
       this.setState({allMovies: filteredList})
     }
   }
@@ -67,7 +70,7 @@ class App extends React.Component {
   //access main moviefnc
   toggleWatch(title) {
       var updatedList = this.state.allMovies.map((movie)=>{
-        //is this movie === title passed
+        //is this movie === title passed in
         if (movie.title === title) {
           return {title: movie.title, watch: !movie.watch};
         }
@@ -84,12 +87,40 @@ class App extends React.Component {
     // create a var; filtered v of movies
     if (tf) {
       var watchedMovies = this.state.allMovies.filter((movie)=> movie.watch);
-      this.setState({allMovies: watchedMovies});
+      var unwatchedMovies = this.state.allMovies.filter((movie)=> !movie.watch);
+      //allMovies v watched
+      this.setState({allMovies: watchedMovies, watched: watchedMovies, unwatched: unwatchedMovies});
     } else {
       var unwatchedMovies = this.state.allMovies.filter((movie)=> !movie.watch);
-      this.setState({allMovies: unwatchedMovies});
+      var watchedMovies = this.state.allMovies.filter((movie)=> movie.watch);
+      this.setState({allMovies: unwatchedMovies, watched: watchedMovies});
     }
   }
+
+
+
+
+
+  // watchHandler(tf) {
+  //   // if string === watched
+  //   //  display it
+  //   // create a var; filtered v of movies
+  //   if (tf) {
+  //     var watchedMovies = this.state.allMovies.filter((movie)=> movie.watch);
+  //     var unwatchedMovies = this.state.allMovies.filter((movie)=> !movie.watch);
+  //     //allMovies v watched
+  //     this.setState({watched: watchedMovies, unwatched: unwatchedMovies});
+  //   } else {
+  //     var unwatchedMovies = this.state.allMovies.filter((movie)=> !movie.watch);
+  //     var watchedMovies = this.state.allMovies.filter((movie)=> movie.watch);
+  //     this.setState({unwatched: unwatchedMovies, watched: watchedMovies});
+  //   }
+  // }
+
+
+
+
+
 
   render(){
     return(
@@ -118,6 +149,9 @@ class App extends React.Component {
       <div className="watch-container">
         <WatchedBtn
         watchHandler={this.watchHandler}
+        // updateWatchBtns={this.updateWatchBtns}
+        // toggleSelected={this.toggleSelected}/>
+
         />
       </div>
     </div>
