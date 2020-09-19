@@ -16,7 +16,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    // let filtered = movies.filter(movie => movie.watched);
+    // let filtered = allMovies.filter(movie => movie.watched);
     this.state = {
       allMovies: [],
       searchResults: '',
@@ -27,6 +27,7 @@ class App extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.clickSearch = this.clickSearch.bind(this);
     this.addMovie = this.addMovie.bind(this);
+    this.toggleWatched = this.toggleWatched.bind(this);
   }
 
   componentDidMount() {
@@ -64,6 +65,18 @@ class App extends React.Component {
     }, () => {});
   }
 
+  toggleWatched(title) {
+    var updatedList = this.state.allMovies.map((movie)=> {
+      //is current movie === title passed in
+      if (movie.title === title) {
+        return {title: movie.title, watch: !movie.watch};
+      }
+      return movie;
+    });
+    //mapped over the list and changed the bool
+    this.setState({allMovies: updatedList});
+  }
+
 
   render(){
     let {allMovies, userInput} = this.state;
@@ -87,7 +100,8 @@ class App extends React.Component {
        addMovie={this.addMovie}
       /> */}
       <MovieList
-      movies={allMovies}
+       movies={allMovies}
+       toggleWatched={this.toggleWatched}
       />
       </div>
     </div>

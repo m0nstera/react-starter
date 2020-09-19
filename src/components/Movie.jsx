@@ -1,13 +1,15 @@
 import React from 'react';
 
-const Movie = ({movie}) => {
+const Movie = ({movie, toggleWatch}) => {
 
   return (
     <div className="movie">
       <ul>
         <li>
           {movie.title}
-          {movie.watched}
+          <button
+          onClick={e => {e.preventDefault(); toggleWatch(movie.title)}}
+          >{movie.watched ? "✔" : "❌"}</button>
         </li>
       </ul>
     </div>
