@@ -20,8 +20,8 @@ class App extends React.Component {
     this.state = {
       allMovies: [],
       searchResults: '',
-      userInput: ''
-      // showWatched: true
+      userInput: '',
+      // currentWatchedView: "watched"
     };
     this.resetMovies = this.resetMovies.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -77,33 +77,44 @@ class App extends React.Component {
     this.setState({allMovies: updatedList});
   }
 
+  //  setWatchedView(term) {
+  //    this.setState({ currentWatchedView: term });
+  //  }
+
+  //   watchedViewCycler() {
+  //     // cycle between showing watched, and unwatched
+  //     let correctTerm =
+  //     this.state.currentWatchedView === "watched"
+  //         ? "watched" : "unwatched"
+  //         // : this.state.currentWatchedView === "unwatched"
+  //         // ? "unwatched";
+  //     this.setWatchedView(correctTerm);
+  //   }
+
 
   render(){
-    let {allMovies, userInput} = this.state;
+    let {allMovies, userInput, currentWatchedView} = this.state;
     return(
     <div>
       <h1 className="header">Movie List</h1>
       <div>
-      <SearchBar
-       placeholderTxt="movies!"
-      //  btntxt="search"
-       userInput={userInput}
-       handleInput={this.handleInput}
-       clickSearch={this.clickSearch}
-       addMovie={this.addMovie}
-      />
-      {/* <SearchBar
-       placeholderTxt="add movie"
-       btntxt="add"
-       userInput={userInput}
-       handleInput={this.handleInput}
-       addMovie={this.addMovie}
-      /> */}
-      <MovieList
-       movies={allMovies}
-       toggleWatched={this.toggleWatched}
-      />
-      </div>
+        <SearchBar
+        placeholderTxt="movies!"
+        userInput={userInput}
+        handleInput={this.handleInput}
+        clickSearch={this.clickSearch}
+        addMovie={this.addMovie}
+        />
+       </div>
+       <div>
+        <button>{currentWatchedView ? "watched" : "unwatched"}</button>
+       </div>
+       <div>
+        <MovieList
+        movies={allMovies}
+        toggleWatched={this.toggleWatched}
+        />
+       </div>
     </div>
   )}
 }
