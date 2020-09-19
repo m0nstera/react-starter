@@ -69,7 +69,7 @@ class App extends React.Component {
     var updatedList = this.state.allMovies.map((movie)=> {
       //is current movie === title passed in
       if (movie.title === title) {
-        return {title: movie.title, watch: !movie.watch};
+        return {title: movie.title, watch: !movie.watched};
       }
       return movie;
     });
