@@ -6,9 +6,13 @@ const WatchedBtn = (props) => {
   return (
     <div id="watch-btn">
       <button
-      onClick={(event)=>{
+        onClick={(event)=>{
         event.preventDefault();
-      props.watchStateCycler()}}>{props.currentWatchState}</button>
+        props.watchedHandler()}}>{true ? "watched" : "unwatched"}</button>
+      {/* <button
+        onClick={(event)=>{
+        event.preventDefault();
+        props.watchStateCycler()}}>{props.currentWatchState}</button> */}
     </div>
   );
 };

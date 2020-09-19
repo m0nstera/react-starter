@@ -3,6 +3,7 @@ import '../main.css';
 import $ from 'jquery';
 import MovieList from './MovieList.jsx';
 import SearchBar from './SearchBar.jsx';
+import WatchedBtn from './WatchedBtn.jsx';
 
 // let exampleMovieData = [
 //   {title: 'Annihilation'},
@@ -21,13 +22,14 @@ class App extends React.Component {
       allMovies: [],
       searchResults: '',
       userInput: '',
-      // currentWatchedView: "watched"
+      currentWatched: [],
     };
     this.resetMovies = this.resetMovies.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.clickSearch = this.clickSearch.bind(this);
     this.addMovie = this.addMovie.bind(this);
     this.toggleWatched = this.toggleWatched.bind(this);
+    this.watchedHandler = this.watchedHandler.bind(this);
   }
 
   componentDidMount() {
@@ -90,10 +92,19 @@ class App extends React.Component {
   //         // ? "unwatched";
   //     this.setWatchedView(correctTerm);
   //   }
+  watchedHandler(tf) {
+    if (tf) {
+      var watchedMovies = this.state.allMovies.filter((movie)=> movie.watch);
+      var unwatchedMovies = this.state.allMovies.filter((movie)=> !movie.watch);
+      this.setState({allMovies: watchedMovies, currentWatched: unwatchedMovies})
+    } else {
+      this.setState({allMovies: unwatchedMovies, currentWatched: watchedMovies})
+    }
+  }
 
 
   render(){
-    let {allMovies, userInput, currentWatchedView} = this.state;
+    let {allMovies, userInput, currentWatched} = this.state;
     return(
     <div>
       <h1 className="header">Movie List</h1>
@@ -107,7 +118,9 @@ class App extends React.Component {
         />
        </div>
        <div>
-        <button>{currentWatchedView ? "watched" : "unwatched"}</button>
+       <WatchedBtn
+        watchedHandler={this.watchedHandler}
+       />
        </div>
        <div>
         <MovieList
