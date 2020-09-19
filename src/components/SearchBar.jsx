@@ -18,7 +18,7 @@ const SearchBar = ({placeholderTxt, userInput, handleInput, btntxt, clickSearch,
          onClick={e => {e.preventDefault(); clickSearch()}}
         >search</button>
         <button
-         onClick={e => {addMovie(document.getElementById("input").value)}}
+         onClick={e => {e.preventDefault();addMovie(document.getElementById("input").value)}}
         >add</button>
 
       </form>
