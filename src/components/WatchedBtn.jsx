@@ -8,12 +8,7 @@ const WatchedBtn = (props) => {
       <button
       onClick={(event)=>{
         event.preventDefault();
-        props.watchHandler(true)}}>watched</button>
-
-      <button
-      onClick={(event)=>{
-        event.preventDefault();
-        props.watchHandler(false)}}>to watch</button>
+      props.watchStateCycler()}}>{props.currentWatchState}</button>
     </div>
   );
 };

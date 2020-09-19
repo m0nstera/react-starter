@@ -1,31 +1,32 @@
 import React from 'react';
-import MovieList from './MovieList.jsx';
-import exampleMovieData from '../data/exampleMovieData.js';
-import SearchBar from './SearchBar.jsx';
-import AddMovie from './AddMovie.jsx';
-import WatchedBtn from './WatchedBtn.jsx';
 import '../main.css';
 import $ from 'jquery';
+import MovieList from './MovieList.jsx';
+import SearchBar from './SearchBar.jsx';
+
+// let exampleMovieData = [
+//   {title: 'Annihilation'},
+//   {title: 'Hackers'},
+//   {title: 'Life Aquatic'},
+//   {title: 'Sunshine'},
+//   {title: 'Ex Machina'},
+// ];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
+    // let filtered = movies.filter(movie => movie.watched);
     this.state = {
-      movies: [],
-      searchInput: '',
-      addInput: '',
       allMovies: [],
-
-      watched: [],
-      unwatched: []
+      searchResults: '',
+      userInput: ''
+      // showWatched: true
     };
-    this.searchHandler = this.searchHandler.bind(this)
-    this.searchBtnClick = this.searchBtnClick.bind(this)
-    this.addHandler = this.addHandler.bind(this)
-    this.addBtnClick = this.addBtnClick.bind(this)
-    this.toggleWatch = this.toggleWatch.bind(this)
-    this.watchHandler = this.watchHandler.bind(this)
+    this.resetMovies = this.resetMovies.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.clickSearch = this.clickSearch.bind(this);
+    this.addMovie = this.addMovie.bind(this);
   }
 
   componentDidMount() {
@@ -34,149 +35,63 @@ class App extends React.Component {
 
   resetMovies() {
     this.setState({
-      allMovies: this.state.movies,
+      allMovies: this.state.allMovies,
     });
   }
 
-  searchHandler(input) {
+  handleInput(input) {
     this.setState({
-      searchInput: input
+      userInput: input
     });
   }
 
-  searchBtnClick() {
-    if (this.state.searchInput === '') {
+  clickSearch() {
+    var userinput = this.state.userInput;
+    if (userinput === '') {
       this.resetMovies();
     } else {
-      var titleCheckerFunc = (movie)=>movie.title.toLowerCase() === this.state.searchInput.toLowerCase();
-      var filteredList = this.state.allMovies.filter(titleCheckerFunc);
+      var checkTitle = (movie)=>movie.title.toLowerCase() === userinput.toLowerCase();
+      var filteredList = this.state.allMovies.filter(checkTitle);
+
       this.setState({allMovies: filteredList})
     }
   }
 
-  addHandler(newMovie) {
+  addMovie(movie) {
+    let newMovie = {title: movie, watched: true};
     this.setState({
-      addInput: newMovie});
+      allMovies: [newMovie, ...this.state.allMovies]
+    }, () => {});
   }
-
-  addBtnClick(movie) {
-    var addMov = {title: movie, watch: false};
-    this.setState({
-      allMovies: [addMov, ...this.state.allMovies]
-    }, ()=>{});
-  }
-  // why does the arrow function work?
-
-  //access main moviefnc
-  toggleWatch(title) {
-      var updatedList = this.state.allMovies.map((movie)=>{
-        //is this movie === title passed in
-        if (movie.title === title) {
-          return {title: movie.title, watch: !movie.watch};
-        }
-        return movie;
-      });
-      //mapped over the list and changed the bool
-      this.setState({allMovies: updatedList});
-  }
-
-  // watched handler gets passed a string to filter the list
-  watchHandler(tf) {
-    // if string === watched
-    //  display it
-    // create a var; filtered v of movies
-    if (tf) {
-      var watchedMovies = this.state.allMovies.filter((movie)=> movie.watch);
-      var unwatchedMovies = this.state.allMovies.filter((movie)=> !movie.watch);
-      //allMovies v watched
-      this.setState({allMovies: watchedMovies, watched: watchedMovies, unwatched: unwatchedMovies});
-    } else {
-      var unwatchedMovies = this.state.allMovies.filter((movie)=> !movie.watch);
-      var watchedMovies = this.state.allMovies.filter((movie)=> movie.watch);
-      this.setState({allMovies: unwatchedMovies, watched: watchedMovies});
-    }
-  }
-
-
-
-
-
-  // watchHandler(tf) {
-  //   // if string === watched
-  //   //  display it
-  //   // create a var; filtered v of movies
-  //   if (tf) {
-  //     var watchedMovies = this.state.allMovies.filter((movie)=> movie.watch);
-  //     var unwatchedMovies = this.state.allMovies.filter((movie)=> !movie.watch);
-  //     //allMovies v watched
-  //     this.setState({watched: watchedMovies, unwatched: unwatchedMovies});
-  //   } else {
-  //     var unwatchedMovies = this.state.allMovies.filter((movie)=> !movie.watch);
-  //     var watchedMovies = this.state.allMovies.filter((movie)=> movie.watch);
-  //     this.setState({unwatched: unwatchedMovies, watched: watchedMovies});
-  //   }
-  // }
-
-
-
-
 
 
   render(){
+    let {allMovies, userInput} = this.state;
     return(
     <div>
       <h1 className="header">Movie List</h1>
-      <div className="search-area">
-        <SearchBar
-        searchInput={this.state.searchInput}
-        searchHandler={this.searchHandler}
-        searchBtnClick={this.searchBtnClick}
-        />
-      </div>
-      <div className="add-area">
-        <AddMovie
-        addInput={this.state.addInput}
-        addHandler={this.addHandler}
-        addBtnClick={this.addBtnClick}
-        />
-      </div>
-      <div className="movie-container">
-        <MovieList
-        movies={this.state.allMovies}
-        toggleWatch={this.toggleWatch}
-         />
-      </div>
-      <div className="watch-container">
-        <WatchedBtn
-        watchHandler={this.watchHandler}
-        // updateWatchBtns={this.updateWatchBtns}
-        // toggleSelected={this.toggleSelected}/>
-
-        />
+      <div>
+      <SearchBar
+       placeholderTxt="movies!"
+      //  btntxt="search"
+       userInput={userInput}
+       handleInput={this.handleInput}
+       clickSearch={this.clickSearch}
+       addMovie={this.addMovie}
+      />
+      {/* <SearchBar
+       placeholderTxt="add movie"
+       btntxt="add"
+       userInput={userInput}
+       handleInput={this.handleInput}
+       addMovie={this.addMovie}
+      /> */}
+      <MovieList
+      movies={allMovies}
+      />
       </div>
     </div>
   )}
 }
 
 export default App;
-
-
-
-    // addBtnClick() {
-  //   if (this.state.addInput === '') {
-  //     this.resetMovies();
-  //   } else {
-  //     this.setState({allMovies: exampleMovieData});
-  //   }
-  // }
-// searchBtnClick() {
-//   if (this.state.searchInput === '') {
-//     this.resetMovies();
-//   } else {
-//     var titleCheckerFunc = (movie)=> {
-//       var movieTitle = movie.title.toLowerCase();
-//       return movieTitle === this.state.searchInput.toLowerCase();}
-//     var filteredList = this.state.movies.filter(titleCheckerFunc);
-//     this.setState({filteredMovies: filteredList})
-//   }
-// }

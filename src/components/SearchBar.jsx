@@ -1,18 +1,29 @@
 import React from 'react';
-import MovieList from './MovieList.jsx';
+// import MovieList from './MovieList.jsx';
 
-const SearchBar = (props) => {
+const SearchBar = ({placeholderTxt, userInput, handleInput, btntxt, clickSearch, addMovie}) => {
 
-  return (
-  <div id="search-bar">
-    <input id="search-input" type="text" placeholder="movies?!" value={props.searchInput}
-    onChange={(event) => props.searchHandler(event.target.value)}
-     />
-    <input className="search-btn" type="submit" value="search"
-    onClick={(event) => {event.preventDefault(); props.searchBtnClick()}}
-    />
-  </div>
- );
+    return (
+    <div id="search-bar">
+      <form>
+        <input id="input"
+         type="text"
+         // passed down from App in respective FormComp
+         placeholder={placeholderTxt}
+         value={userInput}
+         onChange={e => handleInput(e.target.value)}
+        ></input>
+
+        <button
+         onClick={e => {e.preventDefault(); clickSearch()}}
+        >search</button>
+        <button
+         onClick={e => {addMovie(document.getElementById("input").value)}}
+        >add</button>
+
+      </form>
+    </div>
+   );
 };
 
 export default SearchBar;
