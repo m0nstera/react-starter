@@ -1,18 +1,23 @@
 import React from 'react';
 import Movie from './Movie.jsx';
 
-const WatchedBtn = (props) => {
+const WatchedBtn = ({watchedHandler, watchedHandler2}) => {
 
   return (
     <div id="watch-btn">
-      <button
-        onClick={(event)=>{
-        event.preventDefault();
-        props.watchedHandler()}}>{true ? "watched" : "unwatched"}</button>
       {/* <button
         onClick={(event)=>{
         event.preventDefault();
-        props.watchStateCycler()}}>{props.currentWatchState}</button> */}
+        watchedHandler()}}>{true ? "watched" : "unwatched"}</button> */}
+      <button
+        onClick={(event)=>{
+        event.preventDefault();
+        watchedHandler(false)}}>watched</button>
+
+      <button
+        onClick={(event)=>{
+        event.preventDefault();
+        watchedHandler2(true)}}>to watch</button>
     </div>
   );
 };

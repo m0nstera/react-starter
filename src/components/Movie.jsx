@@ -9,7 +9,7 @@ const Movie = ({movie, toggleWatched}) => {
           {movie.title}
           <button
           onClick={e => {e.preventDefault(); toggleWatched(movie.title)}}
-          >{movie.watched ? "✔" : "❌"}</button>
+          >{!movie.watched ? "❌" : "✔"}</button>
         </li>
       </ul>
     </div>
