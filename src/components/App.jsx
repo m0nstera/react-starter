@@ -104,6 +104,8 @@ class App extends React.Component {
     }
   };
 
+
+
   //  setWatchedView(term) {
   //    this.setState({ currentWatchedView: term });
   //  }
