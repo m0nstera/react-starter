@@ -52,12 +52,12 @@ class App extends React.Component {
   }
 
   clickSearch() {
-    var userinput = this.state.userInput;
+    // let userInput = this.state.userInput;
     if (userinput === '') {
       this.resetMovies();
     } else {
-      var checkTitle = (movie)=>movie.title.toLowerCase() === userinput.toLowerCase();
-      var filteredList = this.state.allMovies.filter(checkTitle);
+      let checkTitle = (movie)=>movie.title.toLowerCase() === this.state.userInput.toLowerCase();
+      let filteredList = this.state.allMovies.filter(checkTitle);
       this.setState({allMovies: filteredList})
     }
   }
